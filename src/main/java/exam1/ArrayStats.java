@@ -16,7 +16,11 @@ public class ArrayStats {
             array[i] = in.nextInt();
         }
 
+        int suma = 0;
         for(int i = 0; i < array.length; i++){
+            suma += array[i];
         }
+
+        System.out.printf("La suma total és %d\n", suma);
     }
 }
