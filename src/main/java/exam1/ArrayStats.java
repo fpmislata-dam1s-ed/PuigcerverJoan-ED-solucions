@@ -16,7 +16,12 @@ public class ArrayStats {
             array[i] = in.nextInt();
         }
 
+        int maxim = Integer.MIN_VALUE;
         for(int i = 0; i < array.length; i++){
+            if(maxim < array[i]){
+                maxim = array[i];
+            }
         }
+        System.out.printf("L'element més gran és: %d\n", maxim);
     }
 }
