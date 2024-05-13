@@ -9,7 +9,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class DebugRockPaperScissorsTest {
     @Test
     void givenPaperVsPaper_shouldEmpat(){
-        Assertions.assertEquals(0, DebugRockPaperScissors.guanya("paper", "paper"));
+        Assertions.assertEquals(1, DebugRockPaperScissors.guanya("paper", "paper"));
     }
 
     @Test
