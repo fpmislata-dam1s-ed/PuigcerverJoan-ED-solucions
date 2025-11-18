@@ -20,5 +20,15 @@ class PasswordStrengthCheckerTest {
             PasswordStrength actual = PasswordStrengthChecker.checkStrength(password);
             assertEquals(expected, actual);
         }
+
+        @Test
+        @DisplayName("Upper case")
+        void upperCasePasswordShouldBeWeak(){
+            String password = "ABCDEFGH";
+            PasswordStrength expected = PasswordStrength.WEAK;
+
+            PasswordStrength actual = PasswordStrengthChecker.checkStrength(password);
+            assertEquals(expected, actual);
+        }
     }
 }
