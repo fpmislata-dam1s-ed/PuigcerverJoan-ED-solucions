@@ -38,5 +38,19 @@ class PasswordStrengthCheckerTest {
             // ASSERT
             assertEquals(expected, actual);
         }
+
+        @Test
+        @DisplayName("Less than 8 characters")
+        void lessThan8CharachersPasswordShouldBeInvalid(){
+            // ARRANGE
+            String password = "ABc123_";
+            PasswordStrength expected = PasswordStrength.INVALID;
+
+            // ACT
+            PasswordStrength actual = PasswordStrengthChecker.checkStrength(password);
+
+            // ASSERT
+            assertEquals(expected, actual);
+        }
     }
 }
