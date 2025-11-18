@@ -9,7 +9,7 @@ import ud4.methods.PasswordStrengthChecker.PasswordStrength;
 
 class PasswordStrengthCheckerTest {
     @Nested
-    @DisplayName("Invalid tests")
+    @DisplayName("Invalid testcases")
     class InvalidTests {
         @Test
         @DisplayName("Null password")
