@@ -24,5 +24,19 @@ class PasswordStrengthCheckerTest {
             // ASSERT
             assertEquals(expected, actual);
         }
+
+        @Test
+        @DisplayName("Empty password")
+        void emptyPasswordShouldBeInvalid(){
+            // ARRANGE
+            String password = "";
+            PasswordStrength expected = PasswordStrength.INVALID;
+
+            // ACT
+            PasswordStrength actual = PasswordStrengthChecker.checkStrength(password);
+
+            // ASSERT
+            assertEquals(expected, actual);
+        }
     }
 }
