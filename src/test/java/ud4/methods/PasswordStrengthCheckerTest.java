@@ -7,10 +7,6 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 import ud4.methods.PasswordStrengthChecker.PasswordStrength;
 
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Nested;
-import org.junit.jupiter.api.Test;
-import ud4.methods.PasswordStrengthChecker.PasswordStrength;
 class PasswordStrengthCheckerTest {
     @Nested
     @DisplayName("Invalid testcases")
@@ -120,6 +116,20 @@ class PasswordStrengthCheckerTest {
         void upperCaseAndSymbolsShouldBeMedium(){
             String password = "ABC_*DEF";
             PasswordStrength expected = PasswordStrength.MEDIUM;
+
+            PasswordStrength actual = PasswordStrengthChecker.checkStrength(password);
+            assertEquals(expected, actual);
+        }
+    }
+
+    @Nested
+    @DisplayName("Strong testcases")
+    class StrongTests {
+        @Test
+        @DisplayName("lower & upper case & symbols")
+        void lowerAndUpperCaseAndSymbolsShouldBeStrong(){
+            String password = "aBc*/DeF";
+            PasswordStrength expected = PasswordStrength.STRONG;
 
             PasswordStrength actual = PasswordStrengthChecker.checkStrength(password);
             assertEquals(expected, actual);
