@@ -53,4 +53,18 @@ class PasswordStrengthCheckerTest {
             assertEquals(expected, actual);
         }
     }
+
+    @Nested
+    @DisplayName("Weak testcases")
+    class WeakTests {
+        @Test
+        @DisplayName("Lower case")
+        void lowerCasePasswordShouldBeWeak(){
+            String password = "abcdefgh";
+            PasswordStrength expected = PasswordStrength.WEAK;
+
+            PasswordStrength actual = PasswordStrengthChecker.checkStrength(password);
+            assertEquals(expected, actual);
+        }
+    }
 }
