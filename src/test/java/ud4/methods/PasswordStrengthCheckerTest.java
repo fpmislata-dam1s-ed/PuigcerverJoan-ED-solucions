@@ -76,5 +76,15 @@ class PasswordStrengthCheckerTest {
             PasswordStrength actual = PasswordStrengthChecker.checkStrength(password);
             assertEquals(expected, actual);
         }
+
+        @Test
+        @DisplayName("Symbols")
+        void symbolPasswordShouldBeWeak(){
+            String password = "*/*-_//*";
+            PasswordStrength expected = PasswordStrength.WEAK;
+
+            PasswordStrength actual = PasswordStrengthChecker.checkStrength(password);
+            assertEquals(expected, actual);
+        }
     }
 }
