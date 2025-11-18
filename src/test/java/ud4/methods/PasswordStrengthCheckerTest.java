@@ -19,5 +19,15 @@ class PasswordStrengthCheckerTest {
             PasswordStrength actual = PasswordStrengthChecker.checkStrength(password);
             assertEquals(expected, actual);
         }
+
+        @Test
+        @DisplayName("lower case & symbols")
+        void lowerCaseAndSymbolsShouldBeMedium(){
+            String password = "abc_*def";
+            PasswordStrength expected = PasswordStrength.MEDIUM;
+
+            PasswordStrength actual = PasswordStrengthChecker.checkStrength(password);
+            assertEquals(expected, actual);
+        }
     }
 }
