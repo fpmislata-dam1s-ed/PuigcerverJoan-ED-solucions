@@ -6,7 +6,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class NextSecondTest {
     @Test
-    void shouldAddSeconds(){
+    void shouldAddSecond(){
         // Arrange
         int hours = 0;
         int minutes = 0;
@@ -21,7 +21,7 @@ class NextSecondTest {
     }
 
     @Test
-    void shouldAddMinutes(){
+    void shouldAddMinute(){
         // Arrange
         int hours = 0;
         int minutes = 0;
@@ -36,7 +36,22 @@ class NextSecondTest {
     }
 
     @Test
-    void shouldAddHours(){
+    void shouldAddMinuteAndKeepRemainingSeconds(){
+        // Arrange
+        int hours = 0;
+        int minutes = 1;
+        int seconds = 121;
+        String expected = "00:03:02";
+
+        // Act
+        String actual = NextSecond.nextSecond(hours, minutes, seconds);
+
+        // Assert
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    void shouldAddHour(){
         // Arrange
         int hours = 0;
         int minutes = 59;
