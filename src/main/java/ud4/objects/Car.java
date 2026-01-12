@@ -3,7 +3,7 @@ package ud4.objects;
 /**
  * Classe que representa un cotxe.
  * @author Joan Puigcerver
- * @version 1.2 2024-01-05
+ * @version 1.3 2026-01-07
  */
 public class Car {
     /**
@@ -21,14 +21,25 @@ public class Car {
 
     /**
      * Crea un cotxe a partir de la matrícula i els
+     * kilòmetres totals recorreguts i la velocitat.
+     * @param plate Matrícula del cotxe
+     * @param kilometers Kilòmetres recorreguts
+     * @param speed Velocitat actual
+     */
+    public Car(String plate, double kilometers, int speed){
+        this.plate = plate;
+        this.kilometers = kilometers;
+        this.speed = speed;
+    }
+
+    /**
+     * Crea un cotxe a partir de la matrícula i els
      * kilòmetres totals recorreguts. La velocitat inicial és 0 km/h.
      * @param plate Matrícula del cotxe
      * @param kilometers Kilòmetres recorreguts
      */
-    public Car(String plate, int kilometers){
-        this.plate = plate;
-        this.kilometers = Math.max(kilometers, 0);
-        this.speed = 0;
+    public Car(String plate, double kilometers){
+        this(plate, kilometers, 0);
     }
 
     /**
@@ -37,7 +48,7 @@ public class Car {
      * @param plate Matrícula del cotxe
      */
     public Car(String plate){
-        this(plate, 0);
+        this(plate, 0, 0);
     }
 
     /**

@@ -1,72 +1,104 @@
 package ud4.objects;
 
-import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class CarTest {
-    private static final String PLATE = "0000 BBB";
+    private final String PLATE = "0000 BBB";
+
     @Nested
-    class ConstructorTests {
+    class Constructors {
         @Test
-        void testConstructorWithAllParameters(){
+        @DisplayName("Car(plate)")
+        void shouldCreateCarWithPlate(){
             // Arrange
-            int kilometers = 100;
+            String plate = "0000 BBB";
 
             // Act
-            Car car = new Car(PLATE, kilometers);
+            Car car = new Car(plate);
 
             // Assert
             assertAll(
-                () -> assertEquals(PLATE, car.getPlate()),
-                () -> assertEquals(kilometers, car.getKilometers()),
-                () -> assertEquals(0, car.getSpeed())
-            );
-        }
-
-        @Test
-        void testConstructorWithAllParametersNegativeKilometersShouldBe0(){
-            // Arrange
-            int kilometers = -100;
-
-            // Act
-            Car car = new Car(PLATE, kilometers);
-
-            // Assert
-            assertAll(
-                    () -> assertEquals(PLATE, car.getPlate()),
+                    () -> assertEquals(plate, car.getPlate()),
                     () -> assertEquals(0, car.getKilometers()),
                     () -> assertEquals(0, car.getSpeed())
             );
         }
 
         @Test
-        void testConstructorWithPlate(){
+        @DisplayName("Car(plate, kilometers)")
+        void shouldCreateCarWithPlateAndKilometers(){
+            // Arrange
+            String plate = "0000 BBB";
+            double kilometers = 50.5;
+
             // Act
-            Car car = new Car(PLATE);
+            Car car = new Car(plate, kilometers);
 
             // Assert
             assertAll(
-                    () -> assertEquals(PLATE, car.getPlate()),
-                    () -> assertEquals(0, car.getKilometers()),
+                    () -> assertEquals(plate, car.getPlate()),
+                    () -> assertEquals(kilometers, car.getKilometers()),
                     () -> assertEquals(0, car.getSpeed())
             );
         }
     }
 
     @Nested
-    class AccelerateTests {
-        private Car car;
+    @DisplayName("Car.accelerate(speed)")
+    class AccelerateParamTests {
+        @Test
+        @DisplayName("0 accelerate(5) -> 5")
+        void givenStoppedCar_shouldIncreaseVelocity(){
+            // Arrange
+            Car car = new Car(PLATE);
 
-        @BeforeEach
-        void setup(){
-            car = new Car(PLATE);
+            // Act
+            car.accelerate(5);
+
+            // Assert
+            assertEquals(5, car.getSpeed());
         }
 
         @Test
-        void test(){
+        @DisplayName("10 accelerate(10) -> 20")
+        void givenMovingCar_shouldIncreaseVelocity(){
+            // Arrange
+            Car car = new Car(PLATE, 10, 0);
+
+            // Act
+            car.accelerate(10);
+
+            // Assert
+            assertEquals(20, car.getSpeed());
+        }
+
+        @Test
+        @DisplayName("10 accelerate(-5) -> 10")
+        void givenNegativeSpeed_shouldNotModifyCarSpeed(){
+            // Arrange
+            Car car = new Car(PLATE, 10, 0);
+
+            // Act
+            car.accelerate(-5);
+
+            // Assert
+            assertEquals(10, car.getSpeed());
+        }
+    }
+
+    @Nested
+    @DisplayName("Car.accelerate()")
+    class AccelerateTests {
+        @Test
+        @DisplayName("0 accelerate() -> 5")
+        void givenStoppedCar_shouldIncreaseVelocity(){
+            // Arrange
+            Car car = new Car(PLATE);
+
             // Act
             car.accelerate();
 
@@ -75,14 +107,29 @@ class CarTest {
         }
 
         @Test
-        void testMultipleAccelerate(){
+        @DisplayName("10 accelerate() -> 15")
+        void givenMovingCar_shouldIncreaseVelocity(){
+            // Arrange
+            Car car = new Car(PLATE, 10, 0);
+
             // Act
-            car.accelerate();
-            car.accelerate();
             car.accelerate();
 
             // Assert
             assertEquals(15, car.getSpeed());
+        }
+
+        @Test
+        @DisplayName("10 accelerate(-5) -> 10")
+        void givenNegativeSpeed_shouldNotModifyCarSpeed(){
+            // Arrange
+            Car car = new Car(PLATE, 10, 0);
+
+            // Act
+            car.accelerate(-5);
+
+            // Assert
+            assertEquals(10, car.getSpeed());
         }
     }
 }
