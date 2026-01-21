@@ -9,19 +9,19 @@ import org.junit.jupiter.params.provider.CsvSource;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class RockPaperScissorsParametizedTest {
-    @ParameterizedTest(name="{0} VS {1} -> {2}")
+    @ParameterizedTest(name = "{0} vs {1} => {2}")
     @CsvSource({
             "pedra,pedra,0",
-            "paper,paper,0",
             "tisores,tisores,0",
+            "paper,paper,0",
             "pedra,tisores,1",
-            "paper,pedra,1",
             "tisores,paper,1",
+            "paper,pedra,1",
             "pedra,paper,2",
-            "paper,tisores,2",
             "tisores,pedra,2",
+            "paper,tisores,2",
     })
-    void pedraVsPedraShouldReturn0(String j1, String j2, int expected){
+    void guanyaTest(String j1, String j2, int expected){
         // Act
         int actual = RockPaperScissors.guanya(j1, j2);
 

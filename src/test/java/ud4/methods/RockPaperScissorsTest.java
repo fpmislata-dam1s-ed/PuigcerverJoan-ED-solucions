@@ -15,7 +15,7 @@ class RockPaperScissorsTest {
             // Arrange
             String j1 = "tisores";
             String j2 = "tisores";
-            int expected = 1;
+            int expected = 0;
 
             // Act
             int actual = RockPaperScissors.guanya(j1, j2);

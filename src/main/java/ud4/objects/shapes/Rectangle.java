@@ -4,19 +4,21 @@ public class Rectangle {
     private double x, y;
     private double width, height;
 
-    public Rectangle(){
-        this(0, 0, 1, 1);
-    }
-
-    public Rectangle(double width, double height){
-        this(0, 0, width, height);
-    }
-
     public Rectangle(double x, double y, double width, double height) {
         this.x = x;
         this.y = y;
         this.width = width;
         this.height = height;
+    }
+
+    public Rectangle(double width, double height) {
+        this.width = width;
+        this.height = height;
+    }
+
+    public Rectangle() {
+        this.width = 1;
+        this.height = 1;
     }
 
     public double getX() {
@@ -36,11 +38,12 @@ public class Rectangle {
     }
 
     public double getArea(){
-        return this.width * this.height;
+        return width * height;
     }
 
-    public double getPerimeter(){
-        return 2 * this.width + 2 * this.height;
+    public void move(double dx, double dy){
+        this.x += dx;
+        this.y += dy;
     }
 
     public boolean contains(double px, double py){
