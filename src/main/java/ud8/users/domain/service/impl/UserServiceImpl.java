@@ -5,6 +5,8 @@ import ud8.users.domain.entity.User;
 import ud8.users.domain.service.UserService;
 import ud8.users.persistance.repository.UserRepository;
 
+import java.util.List;
+
 public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
 
@@ -19,6 +21,10 @@ public class UserServiceImpl implements UserService {
             throw new ResourceNotFoundException("User not found");
         }
         return user;
+    }
+
+    public List<User> findAll(){
+        return userRepository.findAll();
     }
 
     public boolean isEmailValid(String email){

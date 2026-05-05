@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public abstract class RowMapper<E> {
-    public abstract E mapItem(ResultSet rs) throws SQLException;
+    public abstract E mapRow(ResultSet rs) throws SQLException;
 
     public List<E> map(ResultSet rs) throws SQLException {
         if (rs == null)
@@ -14,7 +14,7 @@ public abstract class RowMapper<E> {
 
         List<E> list = new ArrayList<>();
         while (rs.next()) {
-            list.add(mapItem(rs));
+            list.add(mapRow(rs));
         }
         return list;
     }

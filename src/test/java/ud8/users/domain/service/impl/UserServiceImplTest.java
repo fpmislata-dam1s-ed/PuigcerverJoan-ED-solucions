@@ -5,17 +5,34 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
+import ud8.common.exception.ResourceNotFoundException;
 import ud8.users.domain.entity.User;
 import ud8.users.persistance.repository.UserRepository;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 class UserServiceImplTest {
     private final UserRepository repository = Mockito.mock(UserRepository.class);
     private final UserServiceImpl service = new UserServiceImpl(repository);
+
+    @Nested
+    class FindById {
+        @Test
+        void whenUserExists_shouldReturnUser() throws ResourceNotFoundException {
+            User expected = new User(1, "user", "user@localhost");
+            when(repository.findById(1)).thenReturn(expected);
+
+            User result = service.findById(1);
+            assertEquals(expected, result);
+        }
+        @Test
+        void whenUserDoesNotExist_shouldThrowException() {
+            when(repository.findById(2)).thenReturn(null);
+            assertThrows(ResourceNotFoundException.class, () -> service.findById(2));
+        }
+    }
 
     @Nested
     class Create {

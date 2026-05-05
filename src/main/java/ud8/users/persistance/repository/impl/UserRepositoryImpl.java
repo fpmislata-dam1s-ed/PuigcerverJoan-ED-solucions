@@ -4,6 +4,8 @@ import ud8.users.domain.entity.User;
 import ud8.users.persistance.dao.UserDao;
 import ud8.users.persistance.repository.UserRepository;
 
+import java.util.List;
+
 public class UserRepositoryImpl implements UserRepository {
     private final UserDao userDao;
 
@@ -14,6 +16,11 @@ public class UserRepositoryImpl implements UserRepository {
     @Override
     public User findById(int userId) {
         return userDao.findById(userId);
+    }
+
+    @Override
+    public List<User> findAll() {
+        return userDao.findAll();
     }
 
     @Override

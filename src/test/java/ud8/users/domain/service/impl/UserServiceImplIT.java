@@ -30,6 +30,21 @@ class UserServiceImplIT extends UserJdbcTest {
     private static UserServiceImpl service = new UserServiceImpl(repository);
 
     @Nested
+    class FindById {
+        @Test
+        void whenUserExists_shouldReturnUser() throws ResourceNotFoundException {
+            User expected = new User(1, "User", "user@locahost");
+
+            User result = service.findById(1);
+            assertEquals(expected, result);
+        }
+        @Test
+        void whenUserDoesNotExist_shouldThrowException() {
+            assertThrows(ResourceNotFoundException.class, () -> service.findById(2));
+        }
+    }
+
+    @Nested
     class Create {
         @Test
         void givenInvalidEmail_shouldNotCreate(){

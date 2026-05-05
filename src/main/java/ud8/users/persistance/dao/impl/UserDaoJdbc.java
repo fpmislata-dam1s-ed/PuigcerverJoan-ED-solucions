@@ -8,6 +8,7 @@ import ud8.common.persistance.database.DatabaseConnection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
 
 public class UserDaoJdbc implements UserDao {
     private final DatabaseConnection connection;
@@ -27,7 +28,7 @@ public class UserDaoJdbc implements UserDao {
             if (!rs.next())
                 return null;
 
-            return userRowMapper.mapItem(rs);
+            return userRowMapper.mapRow(rs);
         } catch (SQLException e) {
             throw new RuntimeException(e.getMessage());
         }
@@ -42,7 +43,18 @@ public class UserDaoJdbc implements UserDao {
             if (!rs.next())
                 return null;
 
-            return userRowMapper.mapItem(rs);
+            return userRowMapper.mapRow(rs);
+        } catch (SQLException e) {
+            throw new RuntimeException(e.getMessage());
+        }
+    }
+
+    @Override
+    public List<User> findAll() {
+        String sql = "SELECT * FROM `user`";
+        try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+            ResultSet rs = preparedStatement.executeQuery();
+            return userRowMapper.map(rs);
         } catch (SQLException e) {
             throw new RuntimeException(e.getMessage());
         }
