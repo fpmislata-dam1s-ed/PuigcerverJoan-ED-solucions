@@ -29,9 +29,10 @@ public class DishRepositoryImpl implements DishRepository {
     @Override
     public void save(Dish dish) {
         Dish existingDish = this.dishDao.findById(dish.getId());
-        if (existingDish == null)
+        if (existingDish == null) {
             this.dishDao.insert(dish);
-        else
+        } else {
             this.dishDao.update(dish);
+        }
     }
 }
