@@ -22,7 +22,7 @@ public class DishServiceImpl implements DishService {
 
     @Override
     public void save(Dish dish) {
-        if(dish != null)
+        if (dish != null)
             this.dishRepository.save(dish);
     }
 }
